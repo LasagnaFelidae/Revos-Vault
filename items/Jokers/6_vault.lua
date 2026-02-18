@@ -371,7 +371,7 @@ SMODS.Joker({
 		local crv = card.ability.extra
 		if
 			context.setting_blind
-			and SMODS.pseudorandom_probability(card, "vmichel_seed", 1, crv.ods)
+			and SMODS.pseudorandom_probability(card, "vmichel_seed", 1, crv.odds)
 			and not context.repetition
 			and not context.individual
 			and not context.blueprint
