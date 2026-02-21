@@ -1816,30 +1816,28 @@ SMODS.Joker({
 			odds = 101,
 		},
 	},
-	add_to_deck = function(self,card,from_debuff)
+	add_to_deck = function(self, card, from_debuff)
 		if RevoConfig["9_secretjokers_enabled"] then
-			if context.end_of_round and context.main_eval and not context.blueprint then
-				if SMODS.pseudorandom_probability(card,"kq_secret",1,card.ability.extra.odds) then
-					card:juice_up(0.3, 0.4)
-					card:set_ability("j_crv_kqb")
-				end
+			if SMODS.pseudorandom_probability(card, "kq_secret", 1, card.ability.extra.odds) then
+				card:juice_up(0.3, 0.4)
+				card:set_ability("j_crv_kqb")
 			end
 		end
 	end,
 	loc_vars = function(self, info_queue, card)
-		info_queue[#info_queue+1] = {set = "Other", key = "crv_art_credits", vars = {"Chainsawmert"}}
-				local area = self.area
-		if G.jokers and G.jokers.cards then area = G.jokers.cards end
+		info_queue[#info_queue + 1] = { set = "Other", key = "crv_art_credits", vars = { "Chainsawmert" } }
+		local area = self.area
+		if G.jokers and G.jokers.cards then
+			area = G.jokers.cards
+		end
 
-			return {
-				vars = {
-					card.ability.extra.xmult * RevosVault.stickercheck(area, {"perishable"}) + 1,
-					card.ability.extra.xmult,
-				},
-			}
-
+		return {
+			vars = {
+				card.ability.extra.xmult * RevosVault.stickercheck(area, { "perishable" }) + 1,
+				card.ability.extra.xmult,
+			},
+		}
 	end,
-
 	calculate = function(self, card, context)
 		if context.setting_blind and not context.blueprint then
 			local rr = nil
@@ -1858,7 +1856,7 @@ SMODS.Joker({
 		end
 		if context.joker_main then
 			return {
-				xmult = card.ability.extra.xmult * RevosVault.stickercheck(G.jokers.cards, {"perishable"}) + 1,
+				xmult = card.ability.extra.xmult * RevosVault.stickercheck(G.jokers.cards, { "perishable" }) + 1,
 			}
 		end
 	end,
