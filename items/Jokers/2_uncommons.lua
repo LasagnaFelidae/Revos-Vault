@@ -3350,22 +3350,20 @@ SMODS.Joker({
 	end,
 	calculate = function(self, card, context)
 		local atp = card.ability.extra
-		local hearts = 0
-		if
-			context.individual
-			and context.cardarea == G.play
-			and context.other_card:is_suit("Hearts", true)
-			and not context.blueprint
-		then
-			hearts = hearts + 1
+		if context.before and context.scoring_hand then
+			for k, v in pairs(context.scoring_hand) do
+				if v:is_suit("Hearts", true) then
+					atp.no_trig = true
+				end
+			end
 		end
-		if context.joker_main and hearts == 0 then
-			return {
-				xchips = atp.chipx,
+		if context.joker_main and not atp.no_trig then
+			return{
+				xchips = atp.chipx
 			}
 		end
 		if context.after then
-			hearts = 0
+			atp.no_trig = nil
 		end
 	end,
 })
