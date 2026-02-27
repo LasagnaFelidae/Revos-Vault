@@ -35,6 +35,19 @@ SMODS.Back {
 }
 
 SMODS.Back {
+    key = 'goldendeck',
+    atlas = 'Decks',
+    pos = {
+        x = 1,
+        y = 1
+    },
+    crv_apply = function(self)
+        SMODS.set_scoring_calculation("crv_dollars_mult_scoring")
+    end
+}
+
+
+SMODS.Back {
     key = 'thedeal',
     atlas = 'Decks',
     pos = {
@@ -54,7 +67,6 @@ SMODS.Back {
         }))
     end
 }
-
 --[[SMODS.Back {
     name = 'Machinery',
     key = 'mach',

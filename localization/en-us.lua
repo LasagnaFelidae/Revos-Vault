@@ -160,6 +160,10 @@ return {
 				text = { "Enable {C:crv_banana}Banana {C:dark_edition,T:crv_banana_mayhem_desc}Mayhem",
 			"{C:inactive,s:0.8}(Only banana jokers and packs can be created)" },
 			},
+			b_crv_goldendeck = {
+				name = "Golden Deck",
+				text = { "Total score is now","{C:red}Multiplied{} by current {C:money}Dollars{}" },
+			},
 
 
 			-- Unused

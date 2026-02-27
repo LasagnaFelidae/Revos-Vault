@@ -37,4 +37,15 @@ payload = '''
     end
 '''
 match_indent = true
-
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+pattern = '''self.HUD:recalculate()'''
+position = 'after'
+payload = '''
+if G.GAME.selected_back and G.GAME.selected_back.effect.center.crv_apply and not G.GAME.applied_crv then
+    G.GAME.applied_crv = true
+    G.GAME.selected_back.effect.center:crv_apply()
+end
+'''
+match_indent = true
