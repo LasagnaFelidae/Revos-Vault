@@ -2312,7 +2312,7 @@ return {
 				name = "Everyone",
 				text = {
 					"Each scored {C:attention}Non-Face{} card",
-					"gives {C:chips}+#2#{}",
+					"gives {C:chips}+#2#{} Chips",
 					"Each scored {C:attention}Face{} card",
 					"gives {C:mult}+#1#{} Mult",
 				},
@@ -4530,7 +4530,7 @@ return {
 			gem_crv_expe = {
 				name = "Emerald",
 				text = {
-					"Double all earned",
+					"Double all earned money",
 					"for {C:attention}#2#{C:inactive} (#1#){} rounds",
 				},
 			},
