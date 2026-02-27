@@ -3013,10 +3013,6 @@ SMODS.Joker({
 				return {
 					mult = (G.GAME.consumeable_usage_total.spectral * card.ability.extra.multg),
 				}
-			else
-				return {
-					mult = card.ability.extra.mult,
-				}
 			end
 		end
 	end,

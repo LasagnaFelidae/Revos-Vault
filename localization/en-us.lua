@@ -3302,6 +3302,7 @@ return {
 				name = "Camera",
 				text = {
 					"Creates a {C:red}Weak{}",
+					"and {C:crv_temp}Temporary",
 					"copy of the",
 					"highlighted {C:attention}Joker"
 				}
