@@ -155,10 +155,10 @@ end
 	local shopcreateold = create_card_for_shop
 	function create_card_for_shop(area)
 		if RevosVault.config.gems_enabled then
-			if ((pseudorandom("gem_rate") > G.GAME.gem_rate) and not RevosVault.gem_skip) or RevosVault.guarantee_gem then
+			if ((pseudorandom("gem_rate") > G.GAME.gem_rate) and not G.GAME.gem_skip) or G.GAME.guarantee_gem then
 				RevosVault.add_gem()
 			end
-			RevosVault.gem_skip = true
+			G.GAME.gem_skip = true
 		end
 
 		--[[if pseudorandom("get_boon") < 1 / 4 then
@@ -877,8 +877,8 @@ end
 
 local toggle_shop_old = G.FUNCS.toggle_shop
 function G.FUNCS.toggle_shop(e)
-	if G.shop and RevosVault.gem_skip then
-		RevosVault.gem_skip = false
+	if G.shop and G.GAME.gem_skip then
+		G.GAME.gem_skip = false
 	end
     toggle_shop_old(e)
 end
