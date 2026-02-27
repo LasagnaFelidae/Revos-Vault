@@ -374,6 +374,12 @@ G.FUNCS.crv_death_ability = function(e)
 				PDCARD[G.GAME.deathcard_seed_crv].given_name = ""
 				PDCARD[G.GAME.deathcard_seed_crv].incomplete = true
 
+				if string.find(card.config.center.key, "crv_deathcard") then
+					PDCARD[G.GAME.deathcard_seed_crv].function_from = PDCARD[RevosVault.find_deathcard_profile(card.config.center.key)].function_from
+				else
+					PDCARD[G.GAME.deathcard_seed_crv].function_from = card.config.center.key
+				end
+
 				PDCARD[G.GAME.deathcard_seed_crv].function_from = card.config.center.key
 				PDCARD[G.GAME.deathcard_seed_crv].name = card.config.center.name
 				PDCARD[G.GAME.deathcard_seed_crv].ability_table = copy_table(card.ability)
@@ -570,5 +576,15 @@ function RevosVault.reset_dcard_states()
 	if G and G.P_CENTER_POOLS and G.P_CENTER_POOLS.j_crv_placeholder_death then
 		G.P_CENTER_POOLS.j_crv_placeholder_death.pos.x = 0
 		G.P_CENTER_POOLS.j_crv_placeholder_death.pos.y = 0
+	end
+end
+
+function RevosVault.find_deathcard_profile(dcard)
+	if G.PROFILES[G.SETTINGS.profile].crv_deathcards then
+		for k, v in pairs(G.PROFILES[G.SETTINGS.profile].crv_deathcards) do
+			if v.occupied_card == dcard then
+				return k
+			end
+		end
 	end
 end
