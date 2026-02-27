@@ -359,15 +359,14 @@ G.FUNCS.crv_death_ability = function(e)
 	local card, PDCARD = e.config.ref_table, G.PROFILES[G.SETTINGS.profile].crv_deathcards
 
 	if G.GAME.crv_deathcard_state == "ability" then
+		for k, v in pairs(G.deathcard_chose.cards) do
+			v.children.use_button = nil
+		end
 		RevosVault.set_ability({
 			card = G.deathcard.cards[1],
 			sound = "gong",
 			custom_func = function()
 				-- G.GAME.deathcard_seed_crv = pseudorandom("wo")*pseudorandom("wo2")
-
-				for k, v in pairs(G.deathcard_chose.cards) do
-					v.children.use_button = nil
-				end
 
 				G.GAME.deathcard_seed_crv = RevosVault.get_empty_slot()
 				if not PDCARD then
@@ -410,15 +409,14 @@ G.FUNCS.crv_death_ability = function(e)
 			end,
 		})
 	elseif G.GAME.crv_deathcard_state == "rarity" then
+						for k, v in pairs(G.deathcard_chose.cards) do
+					v.children.use_button = nil
+				end
+
 		RevosVault.set_ability({
 			card = G.deathcard.cards[1],
 			sound = "gong",
 			custom_func = function()
-
-				for k, v in pairs(G.deathcard_chose.cards) do
-					v.children.use_button = nil
-				end
-
 				PDCARD[G.GAME.deathcard_seed_crv].rarity = card.config.center.rarity
 
 				G.deathcard.cards[1].rarity = card.config.center.rarity --not needed since no ui
@@ -431,16 +429,16 @@ G.FUNCS.crv_death_ability = function(e)
 			end,
 		})
 	elseif G.GAME.crv_deathcard_state == "modif" then
+						for k, v in pairs(G.deathcard_chose.cards) do
+					v.children.use_button = nil
+				end
 		RevosVault.set_ability({
 			card = G.deathcard.cards[1],
 			sound = "gong",
 			custom_func = function()
 				-- PDCARD[G.GAME.deathcard_seed_crv]["modif"] = {}
 
-				for k, v in pairs(G.deathcard_chose.cards) do
-					v.children.use_button = nil
-				end
-				
+
 				PDCARD[G.GAME.deathcard_seed_crv].timer = (G.GAME.crv_upgraded_timers and 5) or 3
 
 				if card.edition then
