@@ -2522,3 +2522,23 @@ function RevosVault.get_suits(area)
 
 	return suits
 end
+
+function RevosVault.get_gem_count()
+	local a = 0
+	for k, v in pairs(G.P_CENTER_POOLS.Gem) do
+		if v.discovered and not v.no_collection then
+			a = a + 1
+		end
+	end
+	return a
+end
+
+function RevosVault.get_total_gems() 
+	local a = 0
+	for k, v in pairs(G.P_CENTER_POOLS.Gem) do
+		if not v.no_collection then
+			a = a + 1
+		end
+	end
+	return a
+end

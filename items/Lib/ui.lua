@@ -968,6 +968,10 @@ if RevoConfig["gems_enabled"] then
 				label = { localize("b_gems") },
 				minw = 5,
 				minh = 1,
+				count = {
+					tally = RevosVault.get_gem_count(),
+					of = RevosVault.get_total_gems() 
+				}
 			})
 			--[[local t2 = 
 				UIBox_button({
