@@ -1739,6 +1739,11 @@ SMODS.Joker({
 			vars = { crv.clicks, crv.chips, crv.chipgain },
 		}
 	end,
+	crv_clicker = function(self,card)
+		local crv = card.ability.extra
+		crv.clicks = crv.clicks + 1
+		crv.chips = crv.chips + crv.chipgain
+	end,
 	calculate = function(self, card, context)
 		local crv = card.ability.extra
 		if context.joker_main then

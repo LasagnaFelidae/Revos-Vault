@@ -330,8 +330,8 @@ local click_old = Card.click
 function Card:click()
 	local ret = click_old(self)
 
-		if self.config.center.crv_click then
-			self.config.center.crv_click(self.config.center)
+		if self.config.center.crv_clicker then
+			self.config.center:crv_clicker(self)
 		end
 
 		if self.config.center.key == "j_crv_modicon" and (RevosVault.clicker_fix) then
@@ -673,7 +673,7 @@ function Game:start_run(args)
 			for k, v in pairs(PDCARD) do
 				
 				if PDCARD[k].incomplete then PDCARD[k] = nil G:save_settings() return end
-				if PDCARD[k].mod and not SMODS.Mods(PDCARD[k].mod).can_load then PDCARD[k] = nil G:save_settings() sendWarnMessage("Required mod's for " .. PDCARD[k].given_name .. " doesn't exist. Removing it from profile", "RevosVault")return end -- make this save instead of perma removal
+				if PDCARD[k].mod and SMODS.Mods and not SMODS.Mods[PDCARD[k].mod].can_load then PDCARD[k] = nil G:save_settings() sendWarnMessage("Required mod's for " .. PDCARD[k].given_name .. " doesn't exist. Removing it from profile", "RevosVault")return end -- make this save instead of perma removal
 
 				local card = G.P_CENTERS[PDCARD[k].occupied_card]
 				local fcard = G.P_CENTERS[PDCARD[k].function_from]

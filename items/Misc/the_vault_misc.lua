@@ -257,7 +257,10 @@ G.FUNCS.crv_vault_vault = function(e)
         G.GAME.souls = G.GAME.souls - TheVault.vault_cost
 
         local vault_ver = RevosVault.vaultify(G.vault_card.cards[1], true, true)
-		RevosVault.set_ability({card = G.vault_card.cards[1], sound = "gong", effect_table = {center = vault_ver}})
+		RevosVault.set_ability({card = G.vault_card.cards[1], sound = "gong", effect_table = {center = vault_ver}, second_func = function()
+			TheVault.vault_lock = false
+			G.CONTROLLER.locks["vault_lock"] = false
+		end})
         play_sound("coin1")
     else
 		G.E_MANAGER:add_event(Event({
@@ -274,17 +277,6 @@ G.FUNCS.crv_vault_vault = function(e)
 
         RevosVault.replacecards(G.vault_card.cards, nil, true, true)
     end
-
-	    G.E_MANAGER:add_event(Event({
-			trigger = "after",
-			delay = 0,
-            func = function()
-				TheVault.vault_lock = false
-				G.CONTROLLER.locks["vault_lock"] = false
-                save_run()
-                return true
-            end,
-        }))
 end
 
 G.FUNCS.crv_vault_enhance_can = function(e)
@@ -384,19 +376,12 @@ G.FUNCS.crv_vault_upgrade = function(e)
 	G.GAME.souls = G.GAME.souls - TheVault.upgrade_cost
 
 	local new_key = RevosVault.modify_rarity(G.vault_card.cards[1], 1, nil, nil, true)
-	RevosVault.set_ability({card = G.vault_card.cards[1], sound = nil, effect_table = {center = new_key}})
-	play_sound("coin1")
-
-	G.E_MANAGER:add_event(Event({
-		trigger = "after",
-		delay = 0,
-		func = function()
+	RevosVault.set_ability({card = G.vault_card.cards[1], sound = nil, effect_table = {center = new_key}, second_func = function()
 			TheVault.vault_lock = false
 			G.CONTROLLER.locks["vault_lock"] = false
 			save_run()
-			return true
-		end,
-	}))
+		end})
+	play_sound("coin1")
 end
 
 G.FUNCS.crv_vault_harvest_can = function(e)

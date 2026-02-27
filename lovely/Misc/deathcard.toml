@@ -13,7 +13,7 @@ pattern = '''-- context.end_of_round calculations'''
 position = "before"
 payload = '''
 local deathcard
-if G.GAME.crv_deathcard_allowed and RevoConfig and RevoConfig["experimental_enabled"] then 
+if G.GAME.crv_deathcard_allowed and RevoConfig then 
     deathcard = true
 end
     '''
@@ -24,7 +24,7 @@ target = "functions/state_events.lua"
 pattern = '''if game_over then'''
 position = "at"
 payload = '''
-if (game_over or game_won) and RevoConfig and RevoConfig["experimental_enabled"] then 
+if (game_over or game_won) and RevoConfig then 
     -- print("Reducing timers for deathcards")
     if G.PROFILES[G.SETTINGS.profile].crv_deathcards then
 	local a = G.PROFILES[G.SETTINGS.profile].crv_deathcards
