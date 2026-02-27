@@ -2542,3 +2542,15 @@ function RevosVault.get_total_gems()
 	end
 	return a
 end
+
+function RevosVault.get_unvaulted_vaultables()
+	local tab = {}
+	for k, v in pairs(G.P_CENTER_POOLS.Joker) do
+		for kk, vv in pairs(G.P_JOKER_RARITY_POOLS.crv_va) do
+			if v.key == vv.from then
+				tab[#tab+1] = v.key
+			end
+		end
+	end
+	return tab
+end
