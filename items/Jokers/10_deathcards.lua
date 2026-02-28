@@ -10,7 +10,11 @@ for i = 1, 10 do
 		},
 		no_collection = true,
 		in_pool = function(self)
-			return RevosVault.dcard_in_pool(self.key)
+			if self and self.key then
+				return RevosVault.dcard_in_pool(self.key)
+			else
+				return RevosVault.dcard_in_pool("j_crv_deathcard" .. i)
+			end
 		end,
 	})
 end
