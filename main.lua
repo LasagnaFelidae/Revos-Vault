@@ -101,7 +101,7 @@ G.UIDEF.crv_mechanic_config = function()
 								--callback = should_restart,
 							}),
 							create_toggle({
-								label = localize("crv_enable_deathcards"),
+								label = --[[localize("crv_enable_deathcards")]] "Enable Deathcards",
 								ref_table = RevosVault.config,
 								ref_value = "deathcards_enabled",
 								--callback = should_restart,

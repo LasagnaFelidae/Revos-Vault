@@ -375,9 +375,11 @@ end
 local update_old = Game.update
 function Game:update(dt)
 	update_old(self, dt)
-	if G and G.GAME and G.GAME.deathcard_seed_crv then
-		if G.PROFILES[G.SETTINGS.profile].crv_deathcards and G.PROFILES[G.SETTINGS.profile].crv_deathcards[G.GAME.deathcard_seed_crv] then
-			RevosVault.placeholder_name = G.PROFILES[G.SETTINGS.profile].crv_deathcards[G.GAME.deathcard_seed_crv].given_name or ""
+	if RevoConfig and RevoConfig["deathcards_enabled"] then
+		if G and G.GAME and G.GAME.deathcard_seed_crv then
+			if G.PROFILES[G.SETTINGS.profile].crv_deathcards and G.PROFILES[G.SETTINGS.profile].crv_deathcards[G.GAME.deathcard_seed_crv] then
+				RevosVault.placeholder_name = G.PROFILES[G.SETTINGS.profile].crv_deathcards[G.GAME.deathcard_seed_crv].given_name or ""
+			end
 		end
 	end
 	if G and G.GAME and G.GAME.current_round and G.GAME.current_round.current_hand and G.GAME.current_round.current_hand.crv_dollars_mult_text then
@@ -670,6 +672,7 @@ function Game:start_run(args)
 	end
 
 	start_run_old(self, args)
+	if RevoConfig and RevoConfig["deathcards_enabled"] then
 		RevosVault.reset_dcard_states()
 		local PDCARD = G.PROFILES[G.SETTINGS.profile].crv_deathcards
 
@@ -768,6 +771,7 @@ function Game:start_run(args)
 				end
 			end
 		end
+	end
 
 	-- taken from JoyousSpring (N' my goat)
 

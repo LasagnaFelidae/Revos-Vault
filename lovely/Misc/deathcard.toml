@@ -13,7 +13,7 @@ pattern = '''-- context.end_of_round calculations'''
 position = "before"
 payload = '''
 local deathcard
-if G.GAME.crv_deathcard_allowed and RevoConfig then 
+if G.GAME.crv_deathcard_allowed and RevoConfig and RevoConfig["deathcards_enabled"] then 
     deathcard = true
 end
     '''
@@ -24,7 +24,7 @@ target = "functions/state_events.lua"
 pattern = '''if game_over then'''
 position = "at"
 payload = '''
-if (game_over or game_won) and RevoConfig then 
+if (game_over or game_won) and RevoConfig and RevoConfig["deathcards_enabled"] then  
     -- print("Reducing timers for deathcards")
     if G.PROFILES[G.SETTINGS.profile].crv_deathcards then
 	local a = G.PROFILES[G.SETTINGS.profile].crv_deathcards
@@ -42,7 +42,7 @@ if (game_over or game_won) and RevoConfig then
 	end
 end
 end
-if deathcard and game_over and not game_won and RevoConfig and --[[insert new config here]] (G.jokers and #G.jokers.cards>=2) then 
+if deathcard and game_over and not game_won and RevoConfig and RevoConfig["deathcards_enabled"] and (G.jokers and #G.jokers.cards>=2) then 
     RevosVault.deathscreen()
 elseif game_over then
     '''
@@ -56,7 +56,7 @@ pattern = '''
 if self.STATE == self.STATES.SHOP then'''
 position = "before"
 payload = '''
-if self.STATE == self.STATES.CRV_DEATHCARD and RevoConfig then
+if self.STATE == self.STATES.CRV_DEATHCARD and RevoConfig and RevoConfig["deathcards_enabled"] then 
      RevosVault.back_to_death(true)
 end
     '''
