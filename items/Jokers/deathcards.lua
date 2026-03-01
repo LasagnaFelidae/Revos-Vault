@@ -8,6 +8,12 @@ for i = 1, 10 do
 			x = 0,
 			y = 0,
 		},
+		pools = {
+			["Inscryption"] = true,
+			["Beast"] = false,
+			["Human"] = true, 
+			["Deathcard"] = true
+		},
 		no_collection = true,
 		in_pool = function(self)
 			if self and self.key then
