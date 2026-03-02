@@ -162,7 +162,7 @@ return {
 			},
 			b_crv_goldendeck = {
 				name = "Golden Deck",
-				text = { "Total score is now","{C:red}Multiplied{} by current {C:money}Dollars{}" },
+				text = { "Score is now also","{C:red}Multiplied{} by current {C:money}Dollars{}" },
 			},
 
 
@@ -391,7 +391,7 @@ return {
 
 			sleeve_crv_goldensleeve = {
 				name = "Golden Sleeve",
-				text = { "Total score is now","{C:red}Multiplied{} by current {C:money}Dollars{}" },
+				text = { "Score is now also","{C:red}Multiplied{} by current {C:money}Dollars{}" },
 			},
 			sleeve_crv_goldensleeve_alt = {
 				name = "Golden Sleeve",
