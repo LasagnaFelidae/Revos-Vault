@@ -1,4 +1,5 @@
 RevosFunctions = {} -- mostly unused
+RevosVault.GUI = RevosVault.GUI or {} -- mostly unused
 
 function RevosVault.check_enhancement(area, enhancement)
 	local blss = 0
@@ -2590,4 +2591,13 @@ function RevosVault.very_safe(var, var2)
 		end
 	end
 	return false
+end
+
+function RevosVault.GUI.operator(scale, args)
+	args.text = args.text or "X"
+	args.colour = args.colour or G.C.UI_MULT
+    return
+    {n=G.UIT.C, config={align = "cm", id = 'hand_operator_container'}, nodes={
+        {n=G.UIT.T, config={text = args.text, lang = G.LANGUAGES['en-us'], scale = scale*2, colour = args.colour, shadow = true}},
+    }}
 end

@@ -138,6 +138,7 @@ G.UIDEF.crv_other_config = function()
 					{
 						n = G.UIT.C,
 						nodes = {
+
 							create_toggle({
 								label = localize("crv_enable_blinds"),
 								ref_table = RevosVault.config,

@@ -41,6 +41,11 @@ SMODS.Back {
         x = 1,
         y = 1
     },
+
+    crv_credits = {
+        idea = {"superb_thing"}
+    },
+
     crv_apply = function(self)
         SMODS.set_scoring_calculation("crv_dollars_mult_scoring")
     end

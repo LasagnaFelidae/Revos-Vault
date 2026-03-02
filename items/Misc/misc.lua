@@ -7,43 +7,43 @@ SMODS.Font({
 	path = "Feli6x12Numbers-Regular.ttf",
 })
 
-SMODS.Sound ({
+SMODS.Sound({
 	volume = 5,
 	key = "flicker_music",
 	path = "crv_flicker.ogg",
 	select_music_track = function(self)
 		return G.STATE == G.STATES.CRV_DEATHCARD
-	end
+	end,
 })
 
-SMODS.Sound ({
+SMODS.Sound({
 	volume = 3,
 	key = "flicker_music",
 	path = "crv_flicker.ogg",
 	select_music_track = function(self)
 		return G.STATE == G.STATES.CRV_DEATHCARD
-	end
+	end,
 })
 
-SMODS.Sound ({
+SMODS.Sound({
 	volume = 1,
 	key = "lights_on",
 	path = "crv_lights2.ogg",
 })
 
-SMODS.Sound ({
+SMODS.Sound({
 	volume = 1,
 	key = "lights_off",
 	path = "crv_lights1.ogg",
 })
 
-SMODS.ScreenShader {
-    key = "pitchblack",
-    path = "pitchblack.fs",
-    should_apply = function()
-        return G.GAME.screen_off_crv == true
-    end
-}
+SMODS.ScreenShader({
+	key = "pitchblack",
+	path = "pitchblack.fs",
+	should_apply = function()
+		return G.GAME.screen_off_crv == true
+	end,
+})
 
 RevosVault.C = {
 	SUP = HEX("f7baff"),
@@ -66,7 +66,6 @@ SMODS.Gradient({
 	},
 	cycle = 5,
 })
-
 
 SMODS.Gradient({
 	key = "crv_polychrome",
@@ -108,8 +107,8 @@ SMODS.Gradient({
 	key = "crv_wip",
 	colours = {
 		HEX("000000"),
-		HEX("343434")
-	}
+		HEX("343434"),
+	},
 })
 
 SMODS.Gradient({
@@ -117,8 +116,8 @@ SMODS.Gradient({
 	colours = {
 		HEX("000000"),
 		HEX("ff0000"),
-		cycle =3,
-	}
+		cycle = 3,
+	},
 })
 
 SMODS.Gradient({
@@ -126,8 +125,8 @@ SMODS.Gradient({
 	colours = {
 		HEX("000000"),
 		HEX("ff0000"),
-		cycle =3,
-	}
+		cycle = 3,
+	},
 })
 
 SMODS.Gradient({
@@ -138,7 +137,6 @@ SMODS.Gradient({
 	},
 	cycle = 5,
 })
-
 
 local loc_old = loc_colour
 function loc_colour(_c, _default)
@@ -171,51 +169,60 @@ SMODS.Scoring_Parameter({
 })
 
 SMODS.Scoring_Calculation({
-  key = "dollars_mult_scoring",
+	key = "dollars_mult_scoring",
 	func = function(self, chips, mult, flames)
-	    return (chips * mult) * G.GAME.dollars
+		return (chips * mult) * G.GAME.dollars
 	end,
-  parameters = {'chips', 'mult', "crv_dollars_mult"},
-  replace_ui = function(self)
-    local scale = 0.3
-		return
-		{n=G.UIT.R, config={align = "cm", minh = 1, padding = 0.1}, nodes={
-			{n=G.UIT.C, config={align = "cm", id = 'hand_operator_container'}, nodes={
-                {n=G.UIT.T, config={text = "(", scale = scale * 2 * 0.75, colour = G.C.CHIPS, shadow = true}},
-            }},
-			{n=G.UIT.C, config={align = 'cm', id = 'hand_chips'}, nodes = {
-				SMODS.GUI.score_container({
-					type = 'chips',
-					text = 'chip_text',
-					align = 'cm',
-					w = 1.1,
-					scale = scale
-				})
-			}},
-			SMODS.GUI.operator(scale*0.75),
-			{n=G.UIT.C, config={align = 'cm', id = 'hand_mult'}, nodes = {
-				SMODS.GUI.score_container({
-					type = 'mult',
-					align = 'cm',
-					w = 1.1,
-					scale = scale
-				})
-			}},
-			{n=G.UIT.C, config={align = "cm", id = 'hand_operator_container'}, nodes={
-                {n=G.UIT.T, config={text = ")", scale = scale * 2 * 0.75, colour = G.C.MULT, shadow = true}},
-            }},
-			{n=G.UIT.C, config={align = "cm", id = 'hand_operator_container'}, nodes={
-                {n=G.UIT.T, config={text = "X", scale = scale * 2 * 0.75, colour = G.C.MONEY, shadow = true}},
-            }},
-			{n=G.UIT.C, config={align = 'cm', id = 'hand_crv_dollars_mult'}, nodes = {
-				SMODS.GUI.score_container({
-					type = 'crv_dollars_mult',
-					text = "crv_dollars_mult_text",
-					align = 'cm',
-					w = 1.1,
-					scale = scale
-				})
-			}},
-		}}
-	end
+	parameters = { "chips", "mult", "crv_dollars_mult" },
+	replace_ui = function(self)
+		local scale = 0.3
+			return {
+				n = G.UIT.R,
+				config = { align = "cm", minh = 1, padding = 0.1 },
+				nodes = {
+					RevosVault.GUI.operator(scale * 0.75, { text = "(", colour = G.C.UI_CHIPS }),
+					{
+						n = G.UIT.C,
+						config = { align = "cm", id = "hand_chips" },
+						nodes = {
+							SMODS.GUI.score_container({
+								type = "chips",
+								text = "chip_text",
+								align = "cm",
+								w = 1.1,
+								scale = scale,
+							}),
+						},
+					},
+					RevosVault.GUI.operator(scale * 0.75, { text = "X" }),
+					{
+						n = G.UIT.C,
+						config = { align = "cm", id = "hand_mult" },
+						nodes = {
+							SMODS.GUI.score_container({
+								type = "mult",
+								align = "cm",
+								w = 1.1,
+								scale = scale,
+							}),
+						},
+					},
+					RevosVault.GUI.operator(scale * 0.75, { text = ")" }),
+					RevosVault.GUI.operator(scale * 0.75, { text = "X", colour = G.C.MONEY }),
+					{
+						n = G.UIT.C,
+						config = { align = "cm", id = "hand_crv_dollars_mult" },
+						nodes = {
+							SMODS.GUI.score_container({
+								type = "crv_dollars_mult",
+								text = "crv_dollars_mult_text",
+								align = "cm",
+								w = 1.1,
+								scale = scale,
+							}),
+						},
+					},
+				},
+			}
+	end,
 })
