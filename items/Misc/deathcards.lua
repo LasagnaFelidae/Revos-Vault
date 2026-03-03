@@ -398,7 +398,7 @@ G.FUNCS.crv_death_ability = function(e)
 				G.deathcard.cards[1].config.center.pos.x = PDCARD[G.GAME.deathcard_seed_crv].sprite_x
 				G.deathcard.cards[1].config.center.pos.y = PDCARD[G.GAME.deathcard_seed_crv].sprite_y
 
-				SMODS.destroy_cards(G.deathcard_chose.cards)
+				SMODS.destroy_cards(G.deathcard_chose.cards, true)
 			end,
 			second_func = function()
 				G.GAME.crv_deathcard_state = "rarity"
@@ -418,7 +418,7 @@ G.FUNCS.crv_death_ability = function(e)
 
 				G.deathcard.cards[1].rarity = card.config.center.rarity --not needed since no ui
 
-				SMODS.destroy_cards(G.deathcard_chose.cards)
+				SMODS.destroy_cards(G.deathcard_chose.cards, true)
 			end,
 			second_func = function()
 				G.GAME.crv_deathcard_state = "modif"
@@ -444,7 +444,7 @@ G.FUNCS.crv_death_ability = function(e)
 					G.deathcard.cards[1]:set_edition(card.edition.key, true, true)
 				end
 
-				SMODS.destroy_cards(G.deathcard_chose.cards)
+				SMODS.destroy_cards(G.deathcard_chose.cards, true)
 
 				PDCARD[G.GAME.deathcard_seed_crv].occupied_card = RevosVault.random_deathcard()
 

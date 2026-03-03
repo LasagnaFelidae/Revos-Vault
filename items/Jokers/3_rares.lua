@@ -2759,7 +2759,13 @@ SMODS.Joker({
 	end,
 	calculate = function(self, card, context)
 		if context.reroll_cards and not context.blueprint then
-			RevosVault.replacecards(G.jokers.highlighted, nil, nil, true, card)
+			local ab = {}
+			for k, v in pairs(G.jokers.highlighted) do
+				if v ~= card then
+					ab[#ab+1] = v
+				end
+			end
+			RevosVault.replace_joker(ab, nil, RevosVault.get_rarity(ab[1]))
 			card_eval_status_text(card, "extra", nil, nil, nil, { message = "Reroll!" })
 			card.ability.extra.rerolls = card.ability.extra.rerolls - 1
 			G.jokers:unhighlight_all()
