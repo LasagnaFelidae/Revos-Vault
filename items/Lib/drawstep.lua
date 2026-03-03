@@ -41,6 +41,8 @@ SMODS.DrawStep({
 	order = 11,
 	func = function(self)
 		if string.find(self.config.center.key, "j_crv_deathcard") then
+            local pd = RevosVault.find_deathcard_profile(self.config.center.key)
+            local pdd = G.PROFILES[G.SETTINGS.profile].crv_deathcards
 			if not self.crv_canvas_text_1 then
 				self.crv_canvas_text_1 = SMODS.CanvasSprite({
 					canvasW = 71,
@@ -48,8 +50,8 @@ SMODS.DrawStep({
 					text_offset = { x = 36, y = 11 },
 					text_width = 45,
 					text_height = 11,
-					ref_table = RevosVault,
-					ref_value = "placeholder_name",
+					ref_table = pdd[pd],
+					ref_value = "given_name",
 					text_colour = HEX("351a09"),
 				})
 			end
@@ -60,8 +62,9 @@ SMODS.DrawStep({
 					canvasH = 95,
 					text_offset = { x = 36, y = 78 },
 					text_width = 45,
-					text_height = 18,
-					text = (G.GAME.crv_upgraded_timers and 5) or 3,
+                    text_height = 11,
+					ref_table = pdd[pd],
+					ref_value = "timer",
 					text_colour = HEX("351a09"),
 				})
 			end
