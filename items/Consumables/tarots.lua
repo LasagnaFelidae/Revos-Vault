@@ -288,6 +288,7 @@ SMODS.Consumable({
 	discovered = true,
 	loc_vars = function(self,info_queue,card)
 		info_queue[#info_queue+1] = {set = "Other", key = "crv_weak"}
+		info_queue[#info_queue+1] = {set = "Other", key = "crv_temp"}
 	end,
 	can_use = function(self, card)
 		return G.jokers and ((RevosVault.check("highlight", G.jokers)==1) and RevosVault.check("space", G.jokers))
