@@ -3482,7 +3482,7 @@ SMODS.Joker({
 			questa = 0,
 			questb = "Not Set",
 			xmult = 2,
-			xchips = 4,
+			xchips = 3,
 			odds = 4,
 			counter = 0,
 			rerolls = 0,
