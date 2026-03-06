@@ -966,28 +966,28 @@ SMODS.Joker({
 		}
 	end,
 	calculate = function(self, card, context)
-		if SMODS.pseudorandom_probability(card, "jcbt_seed", 1, card.ability.extra.odds) then
-			if context.individual then
-				if context.cardarea == G.play then
-					for k, v in ipairs(context.scoring_hand) do
-						if context.other_card.ability.effect == "Base" then
-							context.other_card:set_ability(
-								G.P_CENTERS[SMODS.poll_enhancement({
-									guaranteed = true,
-								})],
-								true,
-								false
-							)
-							G.E_MANAGER:add_event(Event({
-								func = function()
-									return true
-								end,
-							}))
-						end
-					end
+			if context.final_scoring_step and SMODS.pseudorandom_probability(card, "jcbt_seed", 1, card.ability.extra.odds) then
+				if true then
+					G.E_MANAGER:add_event(Event({
+						func = function()
+							for k, v in ipairs(context.scoring_hand) do
+								if v.ability.effect == "Base" then
+									v:juice_up()
+									v:set_ability(
+										G.P_CENTERS[SMODS.poll_enhancement({
+											guaranteed = true,
+										})],
+										true,
+										false
+									)
+								end
+							end
+							return true
+						end,
+					}))
 				end
 			end
-		end
+		
 		if context.joker_main then
 			return {
 				xchips = card.ability.extra.stg5b,

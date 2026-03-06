@@ -2702,7 +2702,8 @@ return {
 				name = "Golden Egg",
 				text = {
 					"After {C:attention}#1#{C:inactive} (#2#){} Rounds",
-					"turns into a {C:attention}Chicken Printer{}"
+					"turns into a {C:attention}Chicken Printer{}",
+					"{C:inactive}(Must have room)"
 
 				}
 			},
