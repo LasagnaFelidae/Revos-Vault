@@ -42,7 +42,4 @@ SMODS.Joker({
 			RevosVault.printer_apply(selected_pelt, "m_felijo_plt_gold", nil, nil, nil, "m_felijo_plt_olddata", nil)
 		end
 	end,
-	in_pool = function(self, wawa, wawa2)
-		return G.GAME.used_vouchers["v_felijo_beartrap"]
-	end,
 })
